@@ -951,6 +951,7 @@ class HigherOrderNetwork:
         with _mp.Pool(n_chunks) as pool:
             # calculating the elements for the sparse matrix
             a = pool.map(partiallyCalculated, dicts)
+            pool.close()
 
         # assigning the correct data to the variables, due to the way the amag().get() returns values
         row = _np.hstack([a[i][0] for i in range(n_chunks)])
